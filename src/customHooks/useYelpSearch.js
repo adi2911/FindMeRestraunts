@@ -6,12 +6,12 @@ export default () => {
   //restrauntsobject from yelp api
   const [restraunts, setRestraunts] = useState([]);
 
-  const searchRestraunts = async () => {
+  const searchRestraunts = async (term) => {
     try {
       const response = await yelp.get("/search", {
         params: {
           limit: 50, //default is 20 results
-          term: term,
+          term: term ?? "food",
           location: "san jose",
         },
       });
@@ -24,8 +24,8 @@ export default () => {
   };
 
   useEffect(() => {
-    searchRestraunts();
+    searchRestraunts("food");
   }, []);
 
-  return [restraunts, error, setRestraunts];
+  return [restraunts, error, searchRestraunts];
 };

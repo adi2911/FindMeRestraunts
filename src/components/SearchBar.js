@@ -14,7 +14,9 @@ const SearchBar = (props) => {
         placeholder="Search"
         value={searchTerm}
         onChangeText={(newSearchText) => onTermChange(newSearchText)}
-        onEndEditing={onTermSubmit} //Only once typing is done search should start
+        onEndEditing={(searchEvent) =>
+          onTermSubmit(searchEvent.nativeEvent.text)
+        } //Only once typing is done search should start
       />
     </View>
   );
